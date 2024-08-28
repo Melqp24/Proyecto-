@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KW SEGURIDAD</title>
+    <link rel="stylesheet" href="./styles/style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+ 
+</head>
+<body>
+   <header class="header">
+        <nav class="header_lema">
+            <img class="lema_imagen" src="./assets/alura_latam.jpg"> 
+            <nav class="header_lema_tec">Sumérgete en la tecnología...</nav>
+            <img class="lema_imagen1" src="./assets/ONE.png"> 
+            
+            
+        </nav>
+
+   </header> 
+     <main class="presentacion">
+        <section class="presentacion___contenido">
+
+                <h1 class="titulo_contenido" style="text-align: center;">
+                    <strong class="TituloPrincipal"> KURO  WORDS!</strong>
+                    <p style="text-shadow: 1px 10px 15px black, 0px 5px 10px black ;"> SEGURIDAD EN TUS MANOS </p> </h1>
+            <p class="parrafo1">
+                             
+                <div class="container">                
+                    <textarea id="inputText" placeholder="Escribe el texto aquí..."></textarea>
+                    <div class="alerta_mensaje">
+                        <img class="alerta_imagen" src="./assets/alerta1.gif" > 
+                        <h2 class="alerta">Solo letras minúsculas, sin acentos ni caracteres especiales</h2>
+                    </div> 
+                    
+                    <nav class="boton">
+                            
+                        <a class="LINK_BOTON1">
+                           <button onclick="encryptText()"style="background-color: blue;"><img  src="./assets/cerrado.png"width=50px></button>Encriptar</a>
+                        <a class="LINK_BOTON2">
+                            <button onclick="decryptText()"><img src="./assets/abierto.png" width=50px></button>Desencriptar</a>
+                    
+                   </nav>
+                   
+                </div>
+
+                <p>
+                    
+                </p>
+
+
+
+
+                <script>
+        // Mapa de sustitución para encriptar
+        const substitutionMap = {
+            'e': 'enter',
+            'i': 'imes',
+            'a': 'ai',
+            'o': 'ober',
+            'u': 'ufat'
+        };
+
+
+            // Crea un mapa de sustitución inverso para desencriptar
+        const reverseSubstitutionMap = Object.fromEntries(
+            Object.entries(substitutionMap).map(([key, value]) => [value, key])
+        );
+
+        // Función para encriptar texto
+        function encryptText() {
+            const inputText = document.getElementById('inputText').value;
+            const encryptedText = transformText(inputText, substitutionMap);
+            document.getElementById('outputText').value = encryptedText;
+        }
+
+        // Función para desencriptar texto
+        function decryptText() {
+            const inputText = document.getElementById('inputText').value;
+            const decryptedText = transformText(inputText, reverseSubstitutionMap);
+            document.getElementById('outputText').value = decryptedText;
+        }
+
+        // Función para transformar texto según el mapa dado
+        function transformText(text, map) {
+            // Crear un regex para encontrar todas las claves del mapa en el texto
+            const regex = new RegExp(Object.keys(map).map(key => escapeRegExp(key)).join('|'), 'g');
+
+            return text.replace(regex, match => map[match] || match);
+        }
+
+        // Función para escapar caracteres especiales en expresiones regulares
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        
+    </script>
+
+
+            
+            </p>
+                
+           
+
+          
+         </section>
+            
+            <p>
+            <div class="Imagen">
+                
+                
+                <img class="presentacion_imagen" src="./assets/seguro.jpg" alt="Imagen en dibujo animado de dos jovenes vestidas con ropa de color negro y llevan antifas, entre ambas peronas hay un portatil con cadenas y candado al centro">
+                <textarea id="outputText" readonly="">
+                 Ningún mensaje fue encontrado. 
+      Ingresa el texto que desees encriptar o desencriptar.</textarea>
+                    </div>
+            </div>
+            
+            
+            </div> 
+            
+            </p>
+            
+   </main>
+   <footer class="FOOTER">
+    <p>
+        CREDITOS NEKO
+    </p>
+   </footer>
+</body>
+</html>
